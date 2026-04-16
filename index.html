@@ -8,41 +8,61 @@
         :root { --main-color: #f39c12; --accent-red: #e74c3c; --bg-gray: #f1f3f5; }
         body { font-family: 'Pretendard', sans-serif; margin: 0; background: var(--bg-gray); color: #333; padding-bottom: 100px; }
         
-        header { background: #fff; padding: 30px 20px; text-align: center; border-bottom: 3px solid var(--main-color); box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        .container { max-width: 800px; margin: auto; padding: 20px; }
+        /* 헤더: PC에서는 조금 더 여유 있게 */
+        header { background: #fff; padding: 40px 20px; text-align: center; border-bottom: 3px solid var(--main-color); box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .container { max-width: 900px; margin: auto; padding: 20px; }
 
-        /* 상단 탭 스타일 */
-        .tabs { display: flex; background: #fff; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-        .tab { flex: 1; text-align: center; padding: 15px 0; cursor: pointer; font-weight: bold; color: #777; border-bottom: 3px solid transparent; transition: 0.3s; }
-        .tab.active { color: var(--main-color); border-bottom: 3px solid var(--main-color); background: #fffcf5; }
+        /* 상단 탭: 상단 고정 및 중앙 정렬 */
+        .tabs { display: flex; background: #fff; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 5px rgba(0,0,0,0.05); justify-content: center; }
+        .tab { flex: 1; max-width: 200px; text-align: center; padding: 20px 0; cursor: pointer; font-weight: bold; color: #777; border-bottom: 4px solid transparent; transition: 0.3s; font-size: 18px; }
+        .tab.active { color: var(--main-color); border-bottom: 4px solid var(--main-color); background: #fffcf5; }
 
-        /* 가격 카드 스타일 */
-        .content-section { display: none; }
-        .content-section.active { display: block; animation: fadeIn 0.3s ease-in-out; }
+        /* 섹션 제어: display 속성이 중요합니다 */
+        .content-section { display: none; width: 100%; }
+        .content-section.active { display: block !important; animation: fadeIn 0.3s ease-in-out; }
+        
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        .card { background: #fff; border-radius: 15px; padding: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-top: 10px; }
-        .price-row { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid #f8f9fa; }
+        /* 카드 디자인: PC에서는 더 큼직하게 */
+        .card { background: #fff; border-radius: 20px; padding: 40px; box-shadow: 0 8px 20px rgba(0,0,0,0.06); margin-top: 20px; border: 1px solid #eee; }
+        .price-row { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; border-bottom: 1px solid #f8f9fa; }
         .price-row:last-child { border-bottom: none; }
-        .lens-name { font-size: 18px; font-weight: 600; }
-        .price-val { font-size: 22px; color: var(--accent-red); font-weight: 800; }
+        .lens-name { font-size: 20px; font-weight: 600; color: #444; }
+        .price-val { font-size: 26px; color: var(--accent-red); font-weight: 800; }
 
-        /* 관리자 패널 */
-        #admin-panel { display: none; position: fixed; top: 5%; left: 5%; right: 5%; bottom: 5%; background: white; z-index: 1001; padding: 30px; border-radius: 20px; box-shadow: 0 0 100px rgba(0,0,0,0.5); overflow-y: auto; }
-        .admin-group { margin-bottom: 25px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
-        .admin-group h4 { color: var(--main-color); margin-bottom: 10px; }
+        /* 관리자 패널 (동일) */
+        #admin-panel { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%; max-width: 600px; height: 80vh; background: white; z-index: 1001; padding: 30px; border-radius: 25px; box-shadow: 0 0 100px rgba(0,0,0,0.5); overflow-y: auto; }
+        .admin-group { margin-bottom: 25px; background: #f9f9f9; padding: 15px; border-radius: 10px; }
         .admin-item { display: flex; justify-content: space-between; margin-bottom: 10px; align-items: center; }
-        .admin-item input { width: 120px; padding: 8px; text-align: right; border: 1px solid #ddd; border-radius: 5px; }
+        .admin-item input { width: 150px; padding: 10px; text-align: right; border: 1px solid #ddd; border-radius: 8px; font-size: 16px; }
         
-        .btn-group { display: flex; gap: 10px; position: sticky; bottom: 0; background: white; padding-top: 10px; }
-        .btn { flex: 1; padding: 15px; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; }
+        .btn-group { display: flex; gap: 10px; position: sticky; bottom: 0; background: white; padding-top: 20px; border-top: 1px solid #eee; }
+        .btn { flex: 1; padding: 18px; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; font-size: 16px; }
         .btn-save { background: var(--main-color); color: white; }
         .btn-close { background: #eee; }
         
-        .admin-trigger { position: fixed; bottom: 20px; right: 20px; background: #333; color: #fff; border: none; padding: 10px 15px; border-radius: 30px; opacity: 0.3; }
+        .admin-trigger { position: fixed; bottom: 30px; right: 30px; background: #333; color: #fff; border: none; padding: 15px 20px; border-radius: 40px; opacity: 0.2; cursor: pointer; }
+        .admin-trigger:hover { opacity: 0.8; }
     </style>
 </head>
 <body>
 
 <header>
-    <h1 style="margin:0;
+    <h1 style="margin:0; font-size: 32px;">으뜸플러스안경 홍성내포점</h1>
+    <p style="margin:15px 0 0; font-size: 18px; color:#666;">2층 매장이라 가능한 압도적 가격 혜택!</p>
+</header>
+
+<nav class="tabs">
+    <div class="tab active" onclick="showTab(0)">초발수</div>
+    <div class="tab" onclick="showTab(1)">청광차단</div>
+    <div class="tab" onclick="showTab(2)">근적외선</div>
+    <div class="tab" onclick="showTab(3)">양면비구면</div>
+</nav>
+
+<div class="container">
+    <div id="section-0" class="content-section active">
+        <div class="card">
+            <h2 style="color:var(--main-color); margin-top:0; border-left: 5px solid var(--main-color); padding-left: 15px;">초발수 (USH 코팅)</h2>
+            <div class="price-row"><span>1.56 구면</span> <span class="price-val" id="d_ush_156">6,000원</span></div>
+            <div class="price-row"><span>1.60 비구면</span> <span class="price-val" id="d_ush_160">17,000원</span></div>
+            <div class="price-row"><span>1.67 비구면</span> <span class="price-val" id="d_ush_167">26,000
