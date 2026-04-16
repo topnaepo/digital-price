@@ -3,151 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>으뜸플러스 홍성내포점 - 태블릿 가격표</title>
+    <title>으뜸플러스 홍성내포점 가격표</title>
     <style>
-        :root { --main-color: #f39c12; --accent-red: #e74c3c; --text-dark: #2c3e50; }
-        body { font-family: 'Pretendard', sans-serif; margin: 0; background: #f1f3f5; color: var(--text-dark); line-height: 1.6; }
+        :root { --main-color: #f39c12; --accent-red: #e74c3c; }
+        body { font-family: 'Pretendard', sans-serif; margin: 0; background: #f1f3f5; padding-bottom: 80px; }
+        .container { max-width: 800px; margin: 20px auto; padding: 0 15px; }
+        header { background: #fff; padding: 30px; text-align: center; border-bottom: 3px solid var(--main-color); }
         
-        /* 헤더 섹션 */
-        header { background: #fff; padding: 40px 20px; text-align: center; border-bottom: 3px solid var(--main-color); box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-        .store-name { font-size: 28px; font-weight: 800; margin: 0; color: #333; }
-        .store-sub { font-size: 16px; color: #666; margin-top: 10px; letter-spacing: 1px; }
-
-        .container { max-width: 800px; margin: 30px auto; padding: 0 20px; }
-
-        /* 가격 카드 레이아웃 (2열 그리드) */
-        .price-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .price-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .card { background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .full-width { grid-column: span 2; }
+        .card-title { font-size: 18px; font-weight: bold; color: var(--main-color); margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
         
-        .card { background: #fff; border-radius: 15px; padding: 25px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); border: 1px solid #eee; }
-        .full-width { grid-column: span 2; } /* 넓게 쓰고 싶은 카드는 span 2 */
+        .price-row { display: flex; justify-content: space-between; padding: 8px 0; font-size: 15px; }
+        .sale-price { color: var(--accent-red); font-weight: 800; }
 
-        .card-header { border-bottom: 2px solid var(--main-color); padding-bottom: 15px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: flex-end; }
-        .card-title { font-size: 20px; font-weight: bold; margin: 0; color: var(--main-color); }
-        .card-desc { font-size: 13px; color: #888; }
-
-        .price-row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #f8f9fa; }
-        .price-row:last-child { border-bottom: none; }
+        /* 설정창 스타일 */
+        #admin-panel { display: none; position: fixed; top: 10%; left: 5%; right: 5%; background: white; z-index: 1000; padding: 20px; border-radius: 15px; box-shadow: 0 0 50px rgba(0,0,0,0.3); max-height: 80%; overflow-y: auto; }
+        .admin-item { display: flex; justify-content: space-between; margin-bottom: 10px; align-items: center; }
+        .admin-item input { width: 100px; padding: 5px; text-align: right; }
         
-        .lens-info { font-size: 16px; font-weight: 600; }
-        .price-box { text-align: right; }
-        .original { font-size: 12px; color: #bbb; text-decoration: line-through; display: block; margin-bottom: 2px; }
-        .sale { font-size: 18px; color: var(--accent-red); font-weight: 800; }
+        /* 설정 버튼 */
+        .admin-btn { position: fixed; bottom: 20px; right: 20px; background: #333; color: #fff; border: none; padding: 10px 15px; border-radius: 30px; cursor: pointer; opacity: 0.5; }
+        .admin-btn:hover { opacity: 1; }
+        .save-btn { width: 100%; background: var(--main-color); color: white; border: none; padding: 15px; border-radius: 8px; font-weight: bold; margin-top: 10px; }
 
-        .badge { background: #fff0f0; color: var(--accent-red); font-size: 11px; padding: 2px 6px; border-radius: 4px; margin-left: 5px; font-weight: bold; }
-
-        /* 하단 정보 */
-        .footer-info { margin-top: 40px; text-align: center; padding: 30px; background: #333; color: #fff; border-radius: 15px; }
-        
-        /* 태블릿 가로 대응용 반응형 */
-        @media (max-width: 600px) {
-            .price-grid { grid-template-columns: 1fr; }
-            .full-width { grid-column: span 1; }
-        }
+        @media (max-width: 600px) { .price-grid { grid-template-columns: 1fr; } .full-width { grid-column: span 1; } }
     </style>
 </head>
 <body>
 
 <header>
-    <h1 class="store-name">으뜸플러스안경 홍성내포점</h1>
-    <p class="store-sub">비싼 임대료 대신 고객님께 혜택을! 2층의 기적</p>
+    <h1 style="margin:0;">으뜸플러스 홍성내포점</h1>
+    <p style="color:#666;">2층의 기적, 도매가 안경원</p>
 </header>
 
 <div class="container">
     <div class="price-grid">
-        
         <div class="card">
-            <div class="card-header">
-                <h2 class="card-title">초발수 (USH)</h2>
-                <span class="card-desc">기본 가성비 라인</span>
-            </div>
-            <div class="price-row">
-                <div class="lens-info">1.56 구면</div>
-                <div class="price-box"><span class="original">30,000원</span><span class="sale">6,000원</span></div>
-            </div>
-            <div class="price-row">
-                <div class="lens-info">1.60 비구면</div>
-                <div class="price-box"><span class="original">50,000원</span><span class="sale">17,000원</span></div>
-            </div>
-            <div class="price-row">
-                <div class="lens-info">1.67 비구면</div>
-                <div class="price-box"><span class="original">80,000원</span><span class="sale">26,000원</span></div>
-            </div>
+            <div class="card-title">초발수 (USH)</div>
+            <div class="price-row"><span>1.56 구면</span> <span class="sale-price" id="p_ush_156">6,000원</span></div>
+            <div class="price-row"><span>1.60 비구면</span> <span class="sale-price" id="p_ush_160">17,000원</span></div>
+            <div class="price-row"><span>1.67 비구면</span> <span class="sale-price" id="p_ush_167">26,000원</span></div>
         </div>
 
         <div class="card">
-            <div class="card-header">
-                <h2 class="card-title">청광차단 <span class="badge">BEST</span></h2>
-                <span class="card-desc">UV TOP + 420</span>
-            </div>
-            <div class="price-row">
-                <div class="lens-info">1.56 구면</div>
-                <div class="price-box"><span class="original">40,000원</span><span class="sale">13,000원</span></div>
-            </div>
-            <div class="price-row">
-                <div class="lens-info">1.60 비구면</div>
-                <div class="price-box"><span class="original">60,000원</span><span class="sale">24,000원</span></div>
-            </div>
-            <div class="price-row">
-                <div class="lens-info">1.67 비구면</div>
-                <div class="price-box"><span class="original">90,000원</span><span class="sale">32,000원</span></div>
-            </div>
+            <div class="card-title">청광차단 (420)</div>
+            <div class="price-row"><span>1.56 구면</span> <span class="sale-price" id="p_bl_156">13,000원</span></div>
+            <div class="price-row"><span>1.60 비구면</span> <span class="sale-price" id="p_bl_160">24,000원</span></div>
+            <div class="price-row"><span>1.67 비구면</span> <span class="sale-price" id="p_bl_167">32,000원</span></div>
         </div>
-
-        <div class="card full-width">
-            <div class="card-header">
-                <h2 class="card-title">청광차단 양면비구면</h2>
-                <span class="card-desc">주변부 왜곡 최소화 / 고도수 추천</span>
-            </div>
-            <div style="display: flex; justify-content: space-around;">
-                <div style="flex: 1; text-align: center; border-right: 1px solid #eee;">
-                    <div class="lens-info">1.60 양비</div>
-                    <div class="price-box" style="text-align: center;"><span class="sale">29,000원</span></div>
-                </div>
-                <div style="flex: 1; text-align: center; border-right: 1px solid #eee;">
-                    <div class="lens-info">1.67 양비</div>
-                    <div class="price-box" style="text-align: center;"><span class="sale">39,000원</span></div>
-                </div>
-                <div style="flex: 1; text-align: center;">
-                    <div class="lens-info">1.74 양비</div>
-                    <div class="price-box" style="text-align: center;"><span class="sale">64,000원</span></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-header">
-                <h2 class="card-title">근적외선 차단</h2>
-                <span class="card-desc">눈 노화 방지 프리미엄</span>
-            </div>
-            <div class="price-row">
-                <div class="lens-info">1.60 비구면</div>
-                <div class="price-box"><span class="sale">25,000원</span></div>
-            </div>
-            <div class="price-row">
-                <div class="lens-info">1.67 비구면</div>
-                <div class="price-box"><span class="sale">33,000원</span></div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-header">
-                <h2 class="card-title" style="color:#666;">안내사항</h2>
-            </div>
-            <ul style="font-size: 13px; color: #777; padding-left: 20px; margin: 0;">
-                <li>위 가격은 안경테 구매 시 렌즈 특가입니다.</li>
-                <li>고난시용 렌즈는 추가 비용이 발생할 수 있습니다.</li>
-                <li>콘택트렌즈 및 기타 제품은 별도 문의 바랍니다.</li>
-            </ul>
-        </div>
-
-    </div>
-
-    <div class="footer-info">
-        <p style="margin:0; font-weight: bold;">충남 홍성군 홍북읍 청사로 174번길 17, 2층</p>
-        <p style="margin:5px 0 0; font-size: 14px;">(노브랜드 내포점 건물 2층)</p>
-        <h3 style="color: var(--main-color); margin-top: 15px;">전화: 041-634-8222</h3>
     </div>
 </div>
+
+<div id="admin-panel">
+    <h3>⚙️ 가격 수정 모드</h3>
+    <div class="admin-item"><span>초발수 1.56</span> <input type="text" id="in_ush_156" value="6,000원"></div>
+    <div class="admin-item"><span>초발수 1.60</span> <input type="text" id="in_ush_160" value="17,000원"></div>
+    <div class="admin-item"><span>청광 1.56</span> <input type="text" id="in_bl_156" value="13,000원"></div>
+    <button class="save-btn" onclick="savePrices()">저장 후 적용</button>
+    <button class="save-btn" style="background:#ccc;" onclick="document.getElementById('admin-panel').style.display='none'">닫기</button>
+</div>
+
+<button class="admin-btn" onclick="openAdmin()">⚙️ 가격 설정</button>
+
+<script>
+    // 페이지 로드 시 저장된 가격 불러오기
+    window.onload = function() {
+        const ids = ['ush_156', 'ush_160', 'bl_156']; // 필요한 ID들을 등록
+        ids.forEach(id => {
+            const saved = localStorage.getItem('price_' + id);
+            if (saved) {
+                document.getElementById('p_' + id).innerText = saved;
+                document.getElementById('in_' + id).value = saved;
+            }
+        });
+    }
+
+    function openAdmin() {
+        const pw = prompt("관리자 비밀번호를 입력하세요.");
+        if (pw === "1234") { // 비밀번호 설정
+            document.getElementById('admin-panel').style.display = 'block';
+        } else {
+            alert("비밀번호가 틀렸습니다.");
+        }
+    }
+
+    function savePrices() {
+        const ids = ['ush_156', 'ush_160', 'bl_156'];
+        ids.forEach(id => {
+            const val = document.getElementById('in_' + id).value;
+            localStorage.setItem('price_' + id, val);
+            document.getElementById('p_' + id).innerText = val;
+        });
+        alert("가격이 저장되었습니다!");
+        document.getElementById('admin-panel').style.display = 'none';
+    }
+</script>
 
 </body>
 </html>
